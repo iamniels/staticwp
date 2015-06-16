@@ -182,7 +182,7 @@ class StaticWP
         $uploads = wp_upload_dir();
 
         if (isset($uploads['basedir'])) {
-            $dir = $uploads['basedir'] . '/' . $this->plugin . '/_site';
+            $dir = $uploads['basedir'] . '/' . $this->plugin . '/' . get_current_blog_id() . '/_site';
         } else {
             $dir = WP_CONTENT_DIR . '/uploads/' . $this->plugin . '/' . get_current_blog_id() . '/_site';
         }
