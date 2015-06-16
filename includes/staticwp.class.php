@@ -141,6 +141,35 @@ class StaticWP
     }
 
     /**
+     * Updates the static HTML for the homepage.
+     *
+     * @return void
+     */
+    public function updateHome()
+    {
+        $permalink = get_home_url();
+        $filename = $this->destination . '/index.html';
+
+        if (is_file($filename)) {
+            unlink($filename);
+        }
+
+        $curl = curl_init($permalink);
+
+        curl_setopt($curl, CURLOPT_HEADER,         false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+
+        $data = null;
+        if (($data = curl_exec($curl)) === false) {
+            throw new Exception(sprintf('Curl error: %s', curl_error($curl)));
+        }
+
+        curl_close($curl);
+        file_put_contents($filename, $data);
+    }
+
+    /**
      * Recursively deletes a directory and its contents.
      *
      * @since 1.2.0

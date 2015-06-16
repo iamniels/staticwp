@@ -186,6 +186,7 @@ class Admin extends StaticWP
                     foreach ($types as $type) {
                       $this->preload($type);
                     }
+                    $this->updateHome();
                     $this->addNotice(View::notice('admin/preload-success'));
                 } catch (Exception $e) {
                     $this->addNotice(View::notice('admin/preload-error', 'error'));
@@ -215,6 +216,7 @@ class Admin extends StaticWP
         register_deactivation_hook($this->file, array($this, 'deactivate'));
 
         add_action('save_post', array($this, 'updateHtml'), 10, 2);
+        add_action('save_post', array($this, 'updateHome'));
         add_action('admin_init', array($this, 'handlePost'));
         add_action('admin_init', array($this, 'update'));
         add_action('admin_menu', array($this, 'addMenu'));
