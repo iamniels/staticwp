@@ -1,5 +1,5 @@
 {
-    "name": "slogsdon/staticwp",
+    "name": "iamniels/staticwp",
     "description": "Converts your WordPress blog into a static site",
     "keywords": ["wp","wordpress", "static", "cache"],
     "homepage": "https://github.com/slogsdon/staticwp",
