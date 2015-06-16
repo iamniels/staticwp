@@ -170,7 +170,7 @@ class StaticWP
     }
 
     /**
-     * Recursively deletes a directory and its contents.
+     * Resolve destination directory.
      *
      * @since 1.2.0
      *
@@ -184,7 +184,7 @@ class StaticWP
         if (isset($uploads['basedir'])) {
             $dir = $uploads['basedir'] . '/' . $this->plugin . '/_site';
         } else {
-            $dir = WP_CONTENT_DIR . '/uploads/' . $this->plugin . '/_site';
+            $dir = WP_CONTENT_DIR . '/uploads/' . $this->plugin . '/' . get_current_blog_id() . '/_site';
         }
 
         return apply_filters('staticwp_cache_destination', $dir);
